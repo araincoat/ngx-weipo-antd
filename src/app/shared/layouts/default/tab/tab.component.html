@@ -1,0 +1,61 @@
+<nz-card
+  [nzBodyStyle]="{ padding: 0 }"
+  [nzBordered]="true"
+>
+  <nz-tabset
+    [nzAnimated]="true"
+    [nzSelectedIndex]="selectedIndex"
+    [nzTabPosition]="'top'"
+  >
+    @for (tab of tabs; track $index) {
+    <nz-tab
+      nzClosable
+      [nzTitle]="titleTemplate"
+      (nzSelect)="openTab(tab.path)"
+      (nzContextmenu)="contextMenu($event, menu)"
+    >
+      <ng-template #titleTemplate>
+        <span class="tab-title">
+          {{ tab.text }}
+          @if(tabs.length > 1){
+          <i nz-icon [nzType]="'close'" (click)="closeTab($event, $index)"></i>
+          }
+        </span>
+      </ng-template>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item [nzDisabled]="router.url !== tab.path">刷新</li>
+          <li
+            nz-menu-item
+            [nzDisabled]="$index === 0"
+            (click)="closeTab($event, $index)"
+          >
+            关闭标签
+          </li>
+          <li
+            nz-menu-item
+            [nzDisabled]="tabs.length < 2"
+            (click)="closeOtherTabs($event, $index)"
+          >
+            关闭其他标签
+          </li>
+          <li
+            nz-menu-item
+            [nzDisabled]="$index === 0"
+            (click)="closeLeftTabs($event, $index)"
+          >
+            关闭左侧标签
+          </li>
+          <li
+            nz-menu-item
+            [nzDisabled]="tabs.length - 1 === $index"
+            (click)="closeRightTabs($event, $index)"
+          >
+            关闭右侧标签
+          </li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-tab>
+    }
+  </nz-tabset>
+</nz-card>

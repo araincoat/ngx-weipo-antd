@@ -1,0 +1,28 @@
+:host ::ng-deep {
+  .ant-tabs-tab {
+    transition: background-color 0s !important;
+  }
+
+  .ant-tabs-nav {
+    margin-bottom: 0 !important;
+    transition: background-color 0s !important;
+  }
+}
+
+.tab-title {
+  cursor: pointer;
+  position: relative;
+  padding: 0 16px;
+
+  i {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    margin: 0;
+    display: none;
+  }
+
+  &:hover i {
+    display: inline;
+  }
+}
