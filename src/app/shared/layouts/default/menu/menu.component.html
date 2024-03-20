@@ -1,0 +1,115 @@
+<ng-template #nzTitleTpl let-menu="menu">
+  @if (menu.icon) {
+  <i nz-icon [nzType]="menu.icon"></i>
+  }
+  <span>{{ menu.text }}</span>
+</ng-template>
+
+<ng-template #menuTpl let-menu="menu">
+  <a (click)="changeRoute($event, menu)">
+    @if (menu.icon) {
+    <i nz-icon [nzType]="menu.icon"></i>
+    }
+    <span>{{ menu.text }}</span>
+  </a>
+</ng-template>
+
+<ul
+  nz-menu
+  [nzInlineCollapsed]="isCollapsed$ | async"
+  [nzInlineIndent]="16"
+  [nzMode]="theme.layout === 'sidemenu' ? 'inline' : 'horizontal'"
+  [nzTheme]="theme.navTheme"
+>
+  @for (m1 of menus; track m1) {
+  <ng-container>
+    <!-- 第一级菜单 -->
+    @if(!m1.children || m1.children.length ===0){
+    <li nz-menu-item [nzPaddingLeft]="16" [nzSelected]="m1.selected">
+      <ng-container
+        *ngTemplateOutlet="menuTpl; context: { menu: m1 }"
+      ></ng-container>
+    </li>
+    }
+    <!-- 第二级菜单 -->
+    @if(m1.children && m1.children.length > 0){
+    <li nz-submenu [nzTitle]="nzTitleTpl">
+      <ng-template #nzTitleTpl>
+        @if (m1.icon) {
+        <i nz-icon [nzType]="m1.icon"></i>
+        }
+        <span>{{ m1.text }}</span>
+      </ng-template>
+      <ul>
+        @for (m2 of m1.children; track m2) {
+        <ng-container>
+          @if (!m2.children || m2.children.length === 0) {
+          <li nz-menu-item [nzPaddingLeft]="32" [nzSelected]="m2.selected">
+            <ng-container
+              *ngTemplateOutlet="menuTpl; context: { menu: m2 }"
+            ></ng-container>
+          </li>
+          }
+          <!-- 三级菜单 -->
+          @if(m2.children && m2.children.length > 0){
+          <li nz-submenu [nzTitle]="nzTitleTpl">
+            <ng-template #nzTitleTpl>
+              @if (m2.icon) {
+              <i nz-icon [nzType]="m2.icon"></i>
+              }
+              <span>{{ m2.text }}</span>
+            </ng-template>
+            <ul>
+              @for (m3 of m2.children; track m3) {
+              <ng-container>
+                @if (!m3.children || m3.children.length === 0) {
+                <li
+                  nz-menu-item
+                  [nzPaddingLeft]="48"
+                  [nzSelected]="m3.selected"
+                >
+                  <ng-container
+                    *ngTemplateOutlet="menuTpl; context: { menu: m3 }"
+                  ></ng-container>
+                </li>
+                }
+                <!-- 四级菜单 -->
+                @if(m3.children && m3.children.length > 0){
+                <li nz-submenu [nzTitle]="nzTitleTpl">
+                  <ng-template #nzTitleTpl>
+                    @if (m3.icon) {
+                    <i nz-icon [nzType]="m3.icon"></i>
+                    }
+                    <span>{{ m3.text }}</span>
+                  </ng-template>
+                  <ul>
+                    @for (m4 of m3.children; track m4) {
+                    <ng-container>
+                      <li
+                        nz-menu-item
+                        [nzPaddingLeft]="64"
+                        [nzSelected]="m4.selected"
+                      >
+                        <ng-container
+                          *ngTemplateOutlet="menuTpl; context: { menu: m4 }"
+                        ></ng-container>
+                      </li>
+                      <!-- 四级够了 -->
+                    </ng-container>
+                    }
+                  </ul>
+                </li>
+                }
+              </ng-container>
+              }
+            </ul>
+          </li>
+          }
+        </ng-container>
+        }
+      </ul>
+    </li>
+    }
+  </ng-container>
+  }
+</ul>

@@ -1,0 +1,44 @@
+<nz-card [nzBodyStyle]="{ padding: 0 }">
+  <nz-tabset [nzTabBarStyle]="{ padding: '0 16px', width: '360px' }">
+    <nz-tab nzTitle="通知(4)">
+      <ng-container *ngTemplateOutlet="notificationTpl"></ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="消息(3)">
+      <ng-container *ngTemplateOutlet="notificationTpl"></ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="待办(4)">
+      <ng-container *ngTemplateOutlet="notificationTpl"></ng-container>
+    </nz-tab> </nz-tabset
+></nz-card>
+<ng-template #notificationTpl>
+  <nz-list nzItemLayout="horizontal">
+    @for (i of notices; track i) {
+    <nz-list-item>
+      <nz-list-item-meta>
+        <nz-list-item-meta-title>
+          <div class="flex">
+            <span class="flex-1" nz-typography nzEllipsis>
+              第三方紧急代码变更，第三方紧急代码变更，第三方紧急代码变更
+            </span>
+            <nz-tag [nzColor]="'red'" style="margin-right: 0">马上到期</nz-tag>
+          </div>
+        </nz-list-item-meta-title>
+        <nz-list-item-meta-description>
+          <p nz-typography nzEllipsis nzType="secondary" [nzEllipsisRows]="3">
+            冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务冠霖提交于
+            2017-01-06，需在 2017-01-07 前完成代码变更任务
+          </p>
+        </nz-list-item-meta-description>
+      </nz-list-item-meta>
+    </nz-list-item>
+    }
+    <!-- footer -->
+    @if(notices.length> 0){
+    <nz-list-footer>
+      <a class="clear-notice">清空通知</a>
+    </nz-list-footer>
+    } @else{
+    <nz-list-empty></nz-list-empty>
+    }
+  </nz-list>
+</ng-template>

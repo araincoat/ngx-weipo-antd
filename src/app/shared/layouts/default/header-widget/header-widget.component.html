@@ -1,0 +1,79 @@
+<div class="app-header-widgets">
+  <!-- 搜索 -->
+  <span
+    class="widget"
+    nz-tooltip
+    nzTooltipPlacement="bottom"
+    nzTooltipTitle="搜索"
+  >
+    <i class="widget-icon" nz-icon nzTheme="outline" nzType="search"></i>
+  </span>
+
+  <!-- 通知 -->
+  <span
+    class="widget"
+    nz-dropdown
+    nzTrigger="click"
+    nzPlacement="bottomRight"
+    [nzDropdownMenu]="menu_notice"
+  >
+    <nz-badge [nzCount]="15" [nzOverflowCount]="99" [nzOffset]="[2, -4]">
+      <i class="widget-icon" nz-icon nzTheme="outline" nzType="bell"></i>
+    </nz-badge>
+  </span>
+  <nz-dropdown-menu #menu_notice="nzDropdownMenu">
+    <app-notice />
+  </nz-dropdown-menu>
+
+  <!-- 用户菜单 -->
+  <span
+    class="widget header-user"
+    nz-dropdown
+    nzPlacement="bottomRight"
+    [nzDropdownMenu]="menu_user"
+  >
+    <nz-avatar
+      [nzSize]="24"
+      nzIcon="user"
+      nzSrc="{{ loginUser.avator }}"
+    ></nz-avatar>
+    {{ loginUser.email }}
+  </span>
+  <nz-dropdown-menu #menu_user="nzDropdownMenu">
+    <ul nz-menu>
+      <li nz-menu-item routerLink="/pro/account/center">
+        <i class="m-r-8" nz-icon nzTheme="outline" nzType="user"></i>
+        <span>个人中心</span>
+      </li>
+      <li nz-menu-item routerLink="/pro/account/center">
+        <i class="m-r-8" nz-icon nzTheme="outline" nzType="setting"></i>
+        <span>个人设置</span>
+      </li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item (click)="logout()">
+        <i class="m-r-8" nz-icon nzTheme="outline" nzType="logout"></i>
+        <span>退出登录</span>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+
+  <!-- i18n -->
+  <span
+    class="widget"
+    nz-dropdown
+    nzPlacement="bottomRight"
+    [nzDropdownMenu]="menu_language"
+  >
+    <i nz-icon nzTheme="outline" nzType="global"></i>
+  </span>
+  <nz-dropdown-menu #menu_language="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item>English</li>
+      <li nz-menu-item>Bahasa Indonesia</li>
+      <li nz-menu-item>日本語</li>
+      <li nz-menu-item>Português</li>
+      <li nz-menu-item nzSelected>简体中文</li>
+      <li nz-menu-item>繁體中文</li>
+    </ul>
+  </nz-dropdown-menu>
+</div>
