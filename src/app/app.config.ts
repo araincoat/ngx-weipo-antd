@@ -5,7 +5,6 @@ import {
   RouterFeatures,
   provideRouter,
   withComponentInputBinding,
-  withHashLocation,
   withInMemoryScrolling
 } from '@angular/router'
 // import zh from '@angular/common/locales/zh'
@@ -23,7 +22,7 @@ import { provideNzIcons } from './icons-provider'
 const routerFeatures: RouterFeatures[] = [
   withComponentInputBinding(), // 开启路由参数绑定到组件的输入属性,ng16新增特性
   withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
-  withHashLocation() // 使用哈希路由
+  // withHashLocation() // 使用哈希路由withHashLocation
 ]
 
 /**应用程序初始化 */

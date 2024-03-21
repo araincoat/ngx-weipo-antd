@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router'
 
-import { DashboardComponent } from '@pages/dashboard/dashboard.component'
-import { HomeComponent } from '@pages/home/home.component'
-import { WelcomeComponent } from '@pages/welcome/welcome.component'
-import { DefaultComponent } from './default.component'
+import { DefaultComponent } from '@shared/layouts/default/default.component'
+
+import { DashboardComponent } from '@pages/default/dashboard/dashboard.component'
+import { HomeComponent } from '@pages/default/home/home.component'
+import { WelcomeComponent } from '@pages/default/welcome/welcome.component'
 
 export const DEFAULT_ROUTES: Routes = [
   {
@@ -28,8 +29,4 @@ export const DEFAULT_ROUTES: Routes = [
       }
     ]
   }
-]
-
-export const WELCOME_ROUTES: Routes = [
-  { path: '', component: WelcomeComponent }
 ]

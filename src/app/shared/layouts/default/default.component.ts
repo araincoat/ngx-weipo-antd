@@ -19,6 +19,7 @@ import {
   menu_sidebar_width
 } from '@shared/consts'
 
+import { FooterComponent } from "../../components/footer/footer.component"
 import { HeaderWidgetComponent } from "./header-widget/header-widget.component"
 import { MenuComponent } from './menu/menu.component'
 import { TabComponent } from './tab/tab.component'
@@ -41,7 +42,8 @@ import { TabComponent } from './tab/tab.component'
         NgClass,
         MenuComponent,
         TabComponent,
-        HeaderWidgetComponent
+        HeaderWidgetComponent,
+        FooterComponent
     ]
 })
 export class DefaultComponent implements OnInit {

@@ -5,7 +5,6 @@ enum ThemeType {
   dark = 'dark',
   default = 'default'
 }
-
 export type NavTheme = 'dark' | 'light'
 export type ThemeLayout = 'sidemenu' | 'topmenu'
 export interface ThemeOptions {
@@ -27,6 +26,7 @@ export interface ThemeOptions {
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
+  currentTheme = ThemeType.default
   private options$ = new BehaviorSubject<ThemeOptions>({
     navTheme: 'dark',
     primaryColor: '#1890FF',
@@ -53,8 +53,6 @@ export class ThemeService {
   getIsCollapsed(): Observable<boolean> {
     return this.isCollapsed$.asObservable()
   }
-
-  currentTheme = ThemeType.default
 
   private reverseTheme(theme: string): ThemeType {
     return theme === ThemeType.dark ? ThemeType.default : ThemeType.dark
