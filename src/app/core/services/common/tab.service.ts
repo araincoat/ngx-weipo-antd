@@ -33,15 +33,17 @@ export class TabService {
             }
 
             const snapshot = route.snapshot
-            const tab = {
-              key: snapshot.data['key'],
-              text:
-                snapshot.data['text'] ??
-                snapshot.url.map(segment => segment.path).join('/'),
-              path: event.urlAfterRedirects.split('?')[0]
-            }
+            if (snapshot.data['key']) {
+              const tab = {
+                key: snapshot.data['key'],
+                text:
+                  snapshot.data['text'] ??
+                  snapshot.url.map(segment => segment.path).join('/'),
+                path: event.urlAfterRedirects.split('?')[0]
+              }
 
-            this.addTab(tab)
+              this.addTab(tab)
+            }
           }
         }),
         takeUntilDestroyed()

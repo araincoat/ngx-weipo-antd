@@ -11,5 +11,6 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('@pages/passport/passport.routes').then(m => m.PASSPORT_ROUTES)
-  }
+  },
+  { path: '**', redirectTo: '/home' }
 ]

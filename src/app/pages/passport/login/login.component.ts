@@ -11,11 +11,13 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms'
+import { Router } from '@angular/router'
 
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 
 @Component({
@@ -34,8 +36,10 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs'
   styleUrl: './login.component.less'
 })
 export class LoginComponent implements OnInit {
+  private router = inject(Router)
   private fb = inject(NonNullableFormBuilder)
   private destroyRef = inject(DestroyRef)
+  private messageService = inject(NzMessageService)
 
   validateForm!: FormGroup
 
@@ -49,5 +53,8 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login(): void {}
+  login(): void {
+    this.messageService.create('success', '登录成功')
+    this.router.navigate(['/'])
+  }
 }
