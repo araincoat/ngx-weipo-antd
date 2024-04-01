@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http'
+import { provideHttpClient, withInterceptors } from '@angular/common/http'
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core'
 import {
   RouteReuseStrategy,
@@ -13,6 +13,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { SimpleReuseStrategy } from '@core/services/common/route-strategy'
 import { ThemeService } from '@core/services/common/theme.service'
+import { jwtInterceptor, provideAuth } from '@ngx-weipo/auth'
+import { environment } from 'src/environments/environment'
 import { routes } from './app.routes'
 import { provideNzIcons } from './icons-provider'
 
@@ -21,12 +23,13 @@ import { provideNzIcons } from './icons-provider'
 /**路由特性 */
 const routerFeatures: RouterFeatures[] = [
   withComponentInputBinding(), // 开启路由参数绑定到组件的输入属性,ng16新增特性
-  withInMemoryScrolling({ scrollPositionRestoration: 'top' }),
+  withInMemoryScrolling({ scrollPositionRestoration: 'top' })
   // withHashLocation() // 使用哈希路由withHashLocation
 ]
 
 /**应用程序初始化 */
 const AppInitializerProvider = [
+  provideAuth(), // auth服务
   /**初始化主题样式 */
   {
     provide: APP_INITIALIZER,
@@ -46,6 +49,10 @@ export const appConfig: ApplicationConfig = {
     // provideNzI18n(zh_CN),
     ...AppInitializerProvider,
     provideAnimationsAsync(),
-    provideHttpClient()
+
+    provideHttpClient(
+      withInterceptors([...(environment.interceptorFns || []), jwtInterceptor])
+    ),
+    ...(environment.providers || [])
   ]
 }
