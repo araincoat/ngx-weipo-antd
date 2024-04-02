@@ -11,9 +11,10 @@ import {
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 // import { provideNzI18n, zh_CN } from 'ng-zorro-antd/i18n'
 
+import { jwtInterceptor, provideAuth } from '@ngx-weipo/auth'
+
 import { SimpleReuseStrategy } from '@core/services/common/route-strategy'
 import { ThemeService } from '@core/services/common/theme.service'
-import { jwtInterceptor, provideAuth } from '@ngx-weipo/auth'
 import { environment } from 'src/environments/environment'
 import { routes } from './app.routes'
 import { provideNzIcons } from './icons-provider'

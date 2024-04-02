@@ -1,5 +1,14 @@
-<form class="login-form" nz-form [formGroup]="validateForm" (ngSubmit)="login()">
-  <nz-tabset [nzAnimated]="false">
+<form
+  class="login-form"
+  nz-form
+  [formGroup]="validateForm"
+  (ngSubmit)="login()"
+>
+  <nz-tabset
+    [nzAnimated]="false"
+    [nzSelectedIndex]="tabSelectedIndex"
+    (nzSelectedIndexChange)="onTabSelectedIndexChange($event)"
+  >
     <nz-tab nzTitle="账户密码登录">
       <nz-form-item>
         <nz-form-control nzErrorTip="请输入用户名！">
@@ -72,8 +81,15 @@
       </nz-form-item>
     </nz-tab>
   </nz-tabset>
+
   <nz-form-item>
-    <button class="full-with" nz-button nzSize="large" nzType="primary">
+    <button
+      class="full-with"
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      [nzLoading]="loading"
+    >
       登 录
     </button>
   </nz-form-item>

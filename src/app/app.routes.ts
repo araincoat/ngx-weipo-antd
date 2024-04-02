@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router'
+import { authJWTCanActivate } from '@ngx-weipo/auth'
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: '',
     loadChildren: () =>
-      import('@pages/default/default.routes').then(m => m.DEFAULT_ROUTES)
+      import('@pages/default/default.routes').then(m => m.DEFAULT_ROUTES),
+    canActivate: [authJWTCanActivate]
   },
   {
     path: '',

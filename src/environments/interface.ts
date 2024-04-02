@@ -15,7 +15,7 @@ export interface Environment {
   /**
    * OAuth 配置
    */
-  oAuthConfig: OAuthConfig
+  oAuth: OAuthConfig
   /**
    * 定义在 `app.config.ts` 导入的 providers 列表
    */

@@ -6,6 +6,7 @@
     "paths": {
       "@core/*": ["src/app/core/*"],
       "@pages/*": ["src/app/pages/*"],
+      "@services/*": ["src/app/services/*"],
       "@shared/*": ["src/app/shared/*"]
     },
     "outDir": "./dist/out-tsc",
