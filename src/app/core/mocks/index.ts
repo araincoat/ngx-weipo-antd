@@ -1,3 +1,3 @@
 export * from './account/login'
-export * from './sys/menu'
+export * from './sys/app.info'
 

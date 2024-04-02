@@ -53,60 +53,6 @@ export class MenuComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(data => {
         this.menus = data
-        this.menus = [
-          // {
-          //   key: 'system management',
-          //   text: '系统管理',
-          //   icon: 'tool',
-          //   children: [
-          //     {
-          //       key: 'roles',
-          //       text: '角色',
-          //       link: '/identity/roles'
-          //     },
-          //     {
-          //       key: 'users',
-          //       text: '用户',
-          //       link: '/identity/users'
-          //     }
-          //   ]
-          // },
-          {
-            text: 'dashboard',
-            icon: 'dashboard',
-            routePath: '/dashboard'
-          },
-          {
-            text: 'welcome',
-            icon: 'menu',
-            routePath: '/welcome'
-          },
-          {
-            text: '外部链接',
-            icon: 'link',
-            children: [
-              {
-                key: 'baidu',
-                text: '百度1',
-                url: 'https://www.baidu.com',
-                children: [
-                  {
-                    key: 'baidu2',
-                    text: '百度2',
-                    externalLink: 'https://www.baidu.com',
-                    children: [
-                      {
-                        key: 'baidu3',
-                        text: '百度3',
-                        url: 'https://www.baidu.com'
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
         this.cdr.markForCheck()
       })
     this.router.events

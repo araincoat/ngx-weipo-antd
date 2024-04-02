@@ -1,6 +1,7 @@
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Router } from '@angular/router'
+import { MenuService } from '@core/services/menu.service'
 import { SimpleReuseStrategy } from '@core/services/route-strategy'
 import { TabService } from '@core/services/tab.service'
 import {
@@ -10,13 +11,16 @@ import {
 } from '@ngx-weipo/auth'
 import { Observable, tap } from 'rxjs'
 import { environment } from 'src/environments/environment'
+import { AppService } from '../sys/app.service'
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
   private router = inject(Router)
   private http = inject(HttpClient)
   private authService = inject(AUTH_SERVICE_TOKEN)
+  private menuService = inject(MenuService)
   private tabService = inject(TabService)
+  private appService = inject(AppService)
 
   login(loginModel: LoginModel): Observable<any> {
     const { issuer, clientId, scope } = environment.oAuth
@@ -35,15 +39,18 @@ export class LoginService {
 
     return this.http.post(url, body, options).pipe(
       tap((res: any) => {
+        //存储token
         const token = {
           access_token: res.access_token,
           refresh_token: res.refresh_token,
           expires_at: new Date().valueOf() + res.expires_in * 1000
         }
         this.authService.set(token)
-        // var token = this.authService.get<JWTTokenModel>(JWTTokenModel);
-        // console.log(token.payload);
         //重新获取应用信息
+        // this.appService.getAppInfo().subscribe(data => {
+        //   console.log(data)
+        //   this.menuService.add(data.menus)
+        // })
         this.router.navigate(['/'])
       })
     )
@@ -52,7 +59,6 @@ export class LoginService {
   get payload() {
     return this.authService.get<JWTTokenModel>(JWTTokenModel).payload
   }
-
   logout() {
     this.authService.clear()
     this.router.navigateByUrl(this.authService.login_url!)

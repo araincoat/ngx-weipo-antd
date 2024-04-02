@@ -19,6 +19,8 @@ import {
   menu_sidebar_width
 } from '@shared/consts'
 
+import { AppService } from '@core/apis/sys/app.service'
+import { MenuService } from '@core/services/menu.service'
 import { FooterComponent } from '../../components/footer/footer.component'
 import { HeaderWidgetComponent } from './header-widget/header-widget.component'
 import { MenuComponent } from './menu/menu.component'
@@ -48,6 +50,8 @@ import { TabComponent } from './tab/tab.component'
 export class DefaultComponent implements OnInit {
   destroyRef = inject(DestroyRef)
   themeService = inject(ThemeService)
+  private appService = inject(AppService)
+  private menuService = inject(MenuService)
 
   menu_sidebar_width = menu_sidebar_width
   menu_sidebar_collapsed_width = menu_sidebar_collapsed_width
@@ -66,6 +70,14 @@ export class DefaultComponent implements OnInit {
     this.isCollapsed$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(isCollapsed => (this.isCollapsed = isCollapsed))
+
+    this.appService
+      .getAppInfo()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(data => {
+        // console.log(data)
+        this.menuService.add(data.menus)
+      })
   }
 
   changeCollapsed(isCollapsed: boolean): void {

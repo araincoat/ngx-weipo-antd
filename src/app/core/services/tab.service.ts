@@ -141,7 +141,6 @@ export class TabService {
 
   clearTabs(): void {
     this.tabs = []
-    console.log('clearTabs', this.tabs)
     this.setTabs$(this.tabs)
   }
 }
