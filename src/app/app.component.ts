@@ -14,7 +14,7 @@ import {
 
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal'
 
-import { PreloaderService } from '@core/services/common/preloader.service'
+import { PreloaderService } from '@core/services/preloader.service'
 import { environment } from 'src/environments/environment'
 
 @Component({

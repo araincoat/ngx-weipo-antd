@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 
 import { BehaviorSubject, Observable, filter, tap } from 'rxjs'
 
-import { SimpleReuseStrategy } from '@core/services/common/route-strategy'
+import { SimpleReuseStrategy } from '@core/services/route-strategy'
 
 export interface TabModel {
   key: string

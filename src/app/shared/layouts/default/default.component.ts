@@ -13,7 +13,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 
-import { ThemeOptions, ThemeService } from '@core/services/common/theme.service'
+import { ThemeOptions, ThemeService } from '@core/services/theme.service'
 import {
   menu_sidebar_collapsed_width,
   menu_sidebar_width

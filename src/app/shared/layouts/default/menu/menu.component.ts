@@ -8,8 +8,8 @@ import {
 } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { NavigationEnd, Router, RouterLink } from '@angular/router'
-import { MenuModel, MenuService } from '@core/services/common/menu.service'
-import { ThemeOptions, ThemeService } from '@core/services/common/theme.service'
+import { MenuModel, MenuService } from '@core/services/menu.service'
+import { ThemeOptions, ThemeService } from '@core/services/theme.service'
 
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { silentEvent } from 'ng-zorro-antd/core/util'

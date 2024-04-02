@@ -13,8 +13,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { jwtInterceptor, provideAuth } from '@ngx-weipo/auth'
 
-import { SimpleReuseStrategy } from '@core/services/common/route-strategy'
-import { ThemeService } from '@core/services/common/theme.service'
+import { SimpleReuseStrategy } from '@core/services/route-strategy'
+import { ThemeService } from '@core/services/theme.service'
 import { environment } from 'src/environments/environment'
 import { routes } from './app.routes'
 import { provideNzIcons } from './icons-provider'

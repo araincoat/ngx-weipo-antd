@@ -21,7 +21,7 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzMessageService } from 'ng-zorro-antd/message'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 
-import { LoginService } from '@services/account/login.service'
+import { LoginService } from '@core/apis/account/login.service'
 import { catchError, finalize, tap, throwError } from 'rxjs'
 
 @Component({

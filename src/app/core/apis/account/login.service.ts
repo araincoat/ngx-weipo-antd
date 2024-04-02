@@ -1,8 +1,8 @@
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Router } from '@angular/router'
-import { SimpleReuseStrategy } from '@core/services/common/route-strategy'
-import { TabService } from '@core/services/common/tab.service'
+import { SimpleReuseStrategy } from '@core/services/route-strategy'
+import { TabService } from '@core/services/tab.service'
 import {
   ALLOW_ANONYMOUS,
   AUTH_SERVICE_TOKEN,

@@ -21,7 +21,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 
 import { NgStyle } from '@angular/common'
-import { TabModel, TabService } from '@core/services/common/tab.service'
+import { TabModel, TabService } from '@core/services/tab.service'
 
 @Component({
   selector: 'app-tab',
