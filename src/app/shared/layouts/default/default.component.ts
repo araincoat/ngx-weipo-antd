@@ -19,32 +19,31 @@ import {
   menu_sidebar_width
 } from '@shared/consts'
 
-import { FooterComponent } from "../../components/footer/footer.component"
-import { HeaderWidgetComponent } from "./header-widget/header-widget.component"
+import { FooterComponent } from '../../components/footer/footer.component'
+import { HeaderWidgetComponent } from './header-widget/header-widget.component'
 import { MenuComponent } from './menu/menu.component'
 import { TabComponent } from './tab/tab.component'
 
-
 @Component({
-    selector: 'app-default',
-    standalone: true,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './default.component.html',
-    styleUrl: './default.component.less',
-    imports: [
-        NzLayoutModule,
-        NzMenuModule,
-        NzIconModule,
-        RouterModule,
-        RouterOutlet,
-        NgTemplateOutlet,
-        NgStyle,
-        NgClass,
-        MenuComponent,
-        TabComponent,
-        HeaderWidgetComponent,
-        FooterComponent
-    ]
+  selector: 'app-default',
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './default.component.html',
+  styleUrl: './default.component.less',
+  imports: [
+    NzLayoutModule,
+    NzMenuModule,
+    NzIconModule,
+    RouterModule,
+    RouterOutlet,
+    NgTemplateOutlet,
+    NgStyle,
+    NgClass,
+    MenuComponent,
+    TabComponent,
+    HeaderWidgetComponent,
+    FooterComponent
+  ]
 })
 export class DefaultComponent implements OnInit {
   destroyRef = inject(DestroyRef)
