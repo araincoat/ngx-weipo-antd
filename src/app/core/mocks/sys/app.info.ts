@@ -63,5 +63,5 @@ const appInfo: AppInfoModel = {
 }
 
 export const AppInfo = {
-  '/app_info': () => appInfo
+  '/api/app_info': () => appInfo
 }

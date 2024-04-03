@@ -14,5 +14,5 @@ export const environment = {
     baseUrl: 'https://localhost:44312'
   },
   interceptorFns: [mockInterceptor],
-  providers: [provideMock({}, mocks)]
+  providers: [provideMock({ delay: 1000 }, mocks)]
 } as Environment

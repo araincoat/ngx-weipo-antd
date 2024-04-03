@@ -8,7 +8,7 @@ export class AppService {
 
   getAppInfo(): Observable<any> {
     return this.http
-      .get<AppInfoModel>(`/app_info`)
+      .get<AppInfoModel>(`/api/app_info`)
       .pipe(catchError(() => of([])))
   }
 }
