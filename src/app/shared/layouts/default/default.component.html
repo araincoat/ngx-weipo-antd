@@ -35,7 +35,7 @@
     <nz-header
       [ngClass]="{
         fixed: theme.fixedHeader,
-        'fixed-collapsed': isCollapsed
+        'fixed-collapsed': theme.fixedHeader && isCollapsed
       }"
     >
       <ng-container *ngTemplateOutlet="headerTpl" />

@@ -1,35 +1,92 @@
 <div class="inner-content">
-  <nz-table
-    [nzData]="items"
-    [nzFrontPagination]="false"
-    [nzLoading]="loading"
-    [nzTotal]="total"
-    [nzPageSize]="pageSize"
-    [nzPageIndex]="pageIndex"
-    (nzQueryParams)="onQueryParamsChange($event)"
+  <nz-card
+    class="m-b-12 search-bar"
+    nzHoverable
+    [nzBodyStyle]="{ 'padding-bottom': 0 }"
   >
-    <thead>
-      <tr>
-        <th nzColumnKey="name" [nzSortFn]="true" [nzFilterFn]="true">
-          角色名称
-        </th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (item of items; track $index) {
-      <tr>
-        <td>
-          <span style="margin-right: 10px">{{ item.name }}</span>
-          @if(item.isPublic){
-          <nz-tag [nzColor]="'blue'">公开</nz-tag>
-          }
-        </td>
-        <td>
-          <a nz-button nzType="link">编辑</a>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </nz-table>
+    <form nz-form [formGroup]="queryForm">
+      <div nz-row [nzGutter]="16">
+        @for (item of [0,0,0,0,0]; track $index) {
+        <!-- 折叠 -->
+        @if($index < 2 || !isCollapse){
+        <div nz-col [nzSpan]="8">
+          <nz-form-item>
+            <nz-form-label
+              nzFlex="100px"
+              nzFor="name"
+              nzLabelWrap
+              nzLabelAlign="right"
+            >
+              角色的名称
+            </nz-form-label>
+            <nz-form-control nzFlex="auto" >
+              <input id="name" type="text" nz-input formControlName="name" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        } }
+        <div class="text-right m-b-24" nz-col nzFlex="auto">
+          <button class="m-r-8" nz-button [nzType]="'primary'">
+            <i nz-icon nzType="search"></i>
+            搜索
+          </button>
+          <button class="m-r-8" nz-button (click)="resetForm()">
+            <i nz-icon nzTheme="outline" nzType="close-circle"></i>
+            重置
+          </button>
+          <a (click)="isCollapse = !isCollapse">
+            @if (isCollapse) {
+            <span>展开</span>
+            } @if (!isCollapse) {
+            <span>收起</span>
+            }
+            <i nz-icon [nzType]="isCollapse ? 'down' : 'up'"></i>
+          </a>
+        </div>
+      </div>
+    </form>
+  </nz-card>
+
+  <nz-card nzHoverable nzTitle="角色列表" [nzExtra]="extraTemplate">
+    <ng-template #extraTemplate>
+      <nz-space>
+        <button *nzSpaceItem nz-button [nzType]="'primary'">
+          <i nz-icon nzType="plus"></i>
+          新建
+        </button>
+      </nz-space>
+    </ng-template>
+    <nz-table
+      nzBordered="true"
+      [nzData]="items"
+      [nzFrontPagination]="false"
+      [nzLoading]="loading"
+      [nzTotal]="total"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="pageIndex"
+      (nzQueryParams)="onQueryParamsChange($event)"
+    >
+      <thead>
+        <tr>
+          <th nzColumnKey="name">角色名称</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of items; track $index) {
+        <tr>
+          <td>
+            <span style="margin-right: 10px">{{ item.name }}</span>
+            @if(item.isPublic){
+            <nz-tag [nzColor]="'blue'">公开</nz-tag>
+            }
+          </td>
+          <td>
+            <a>编辑</a>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </nz-table>
+  </nz-card>
 </div>

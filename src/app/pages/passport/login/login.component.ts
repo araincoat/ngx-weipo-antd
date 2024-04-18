@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   DestroyRef,
   OnInit,
@@ -12,7 +11,6 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms'
-import { Router } from '@angular/router'
 
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
@@ -40,8 +38,7 @@ import { catchError, finalize, tap, throwError } from 'rxjs'
   styleUrl: './login.component.less'
 })
 export class LoginComponent implements OnInit {
-  private cdr = inject(ChangeDetectorRef)
-  private router = inject(Router)
+  // private cdr = inject(ChangeDetectorRef)
   private fb = inject(NonNullableFormBuilder)
   private destroyRef = inject(DestroyRef)
   private messageService = inject(NzMessageService)
