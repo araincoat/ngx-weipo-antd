@@ -32,9 +32,9 @@ export class ThemeService {
     primaryColor: '#1890FF',
     layout: 'sidemenu',
     contentWidth: 'Fluid',
-    fixedHeader: false,
+    fixedHeader: true,
     fixedSiderbar: true,
-    fixedTabbar: false
+    fixedTabbar: true
   })
   private isCollapsed$ = new BehaviorSubject<boolean>(false)
 

@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { Injectable, inject } from '@angular/core'
+import { Observable, catchError, of } from 'rxjs'
+import { environment } from 'src/environments/environment'
 
 export interface QueryParams {
   filter?: Array<{ key: string; value: string | string[] }>
@@ -16,6 +17,7 @@ export interface PagedResponse<T> {
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+  private baseUrl = environment.api.baseUrl
   private http = inject(HttpClient)
   private getHttpParams(queryParams: QueryParams): HttpParams {
     let params = new HttpParams()
@@ -54,13 +56,10 @@ export class ApiService {
     return params
   }
 
-  get<T>(
-    url: string,
-    queryParams: QueryParams
-  ): Observable<T> {
+  get<T>(url: string, queryParams: QueryParams): Observable<T> {
     let params = this.getHttpParams(queryParams)
     return this.http
-      .get<T>(url, { params })
-      .pipe(catchError(() => of({} as T )))
+      .get<T>(this.baseUrl + url, { params })
+      .pipe(catchError(() => of({} as T)))
   }
 }

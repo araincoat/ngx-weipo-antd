@@ -43,6 +43,4 @@ Thumbs.db
 
 # 自定义忽略
 .gitignore
-
-/src/app/shared/components/sf
-/src/app/shared/components/schema-form
+/src/app/pages/default/test

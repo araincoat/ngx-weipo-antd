@@ -1,5 +1,5 @@
 const roles: any = {
-  totalCount: 1,
+  totalCount: 100,
   items: [
     {
       name: 'admin',
@@ -19,9 +19,90 @@ const roles: any = {
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
     }
+
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
+    ,
+    {
+      name: 'BookStore',
+      isDefault: true,
+      isStatic: false,
+      isPublic: true,
+      concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
+      id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
+      extraProperties: {}
+    }
   ]
 }
 
 export const ROLES = {
-  '/api/identity/roles': () => roles
+  // '/api/identity/roles': () => roles
 }

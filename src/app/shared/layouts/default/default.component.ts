@@ -62,7 +62,7 @@ export class DefaultComponent implements OnInit {
   theme!: ThemeOptions
 
   ngOnInit(): void {
-    console.log('ngOnInit')
+    // console.log('ngOnInit')
     this.themeOptions$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(themeOptions => {

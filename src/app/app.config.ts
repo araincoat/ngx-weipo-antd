@@ -1,5 +1,7 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http'
+import zh from '@angular/common/locales/zh'
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core'
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 import {
   RouteReuseStrategy,
   RouterFeatures,
@@ -7,19 +9,18 @@ import {
   withComponentInputBinding,
   withInMemoryScrolling
 } from '@angular/router'
-// import zh from '@angular/common/locales/zh'
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async'
 // import { provideNzI18n, zh_CN } from 'ng-zorro-antd/i18n'
 
 import { jwtInterceptor, provideAuth } from '@ngx-weipo/auth'
 
+import { registerLocaleData } from '@angular/common'
 import { SimpleReuseStrategy } from '@core/services/route-strategy'
 import { ThemeService } from '@core/services/theme.service'
 import { environment } from 'src/environments/environment'
 import { routes } from './app.routes'
 import { provideNzIcons } from './icons-provider'
 
-// registerLocaleData(zh)
+registerLocaleData(zh)
 
 /**路由特性 */
 const routerFeatures: RouterFeatures[] = [
