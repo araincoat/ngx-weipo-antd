@@ -15,22 +15,36 @@ export interface FormLayoutProps extends FormlyFieldProps {
 @Component({
   selector: 'formly-form',
   template: `
-    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
-      @for(f of field.fieldGroup; track $index){
-      <!-- 自动收起 -->
-      @if(!displayNum || ($index < displayNum || !isCollapse)){
-      <div nz-col [nzSpan]="f.props!['span'] ?? span">
-        <formly-field [field]="f"></formly-field>
+    @if(props.mode === 'search'){
+    <nz-card class="m-b-12" nzHoverable [nzBodyStyle]="{ 'padding-bottom': 0 }">
+      <ng-container [ngTemplateOutlet]="objectTpl" />
+    </nz-card>
+    } @else{
+    <ng-container [ngTemplateOutlet]="objectTpl" />
+    }
+
+    <ng-template #objectTpl>
+      <div
+        nz-row
+        [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }"
+      >
+        @for(f of field.fieldGroup; track $index){
+        <!-- 自动收起 -->
+        @if(!displayNum || ($index < displayNum || !isCollapse)){
+        <div nz-col [nzSpan]="f.props!['span'] ?? span">
+          <formly-field [field]="f"></formly-field>
+        </div>
+        } }
+
+        <!-- 搜索模式 -->
+        @if(props.mode === 'search'){
+        <ng-container *ngTemplateOutlet="searchBtnTpl" />
+        } @else if(props.mode === "edit"){
+        <ng-container *ngTemplateOutlet="editBtnTpl" />
+        }
       </div>
-      } }
-
-      <!-- 搜索模式 -->
-      @if(props.mode === 'search'){
-      <ng-container *ngTemplateOutlet="searchBtnTpl" />
-      }
-    </div>
-
-    <!-- 表单按钮 -->
+    </ng-template>
+    <!-- 查询表单按钮 -->
     <ng-template #searchBtnTpl>
       <div nz-col nzFlex="auto" class="text-right m-b-24 p-l-16 p-r-16">
         <button nz-button type="submit" nzType="primary" class="m-r-8">
@@ -49,6 +63,21 @@ export interface FormLayoutProps extends FormlyFieldProps {
           <span>{{ isCollapse ? '展开' : '收起' }}</span>
           <i nz-icon [nzType]="isCollapse ? 'down' : 'up'"></i> </a
         >}
+      </div>
+    </ng-template>
+    <!-- 编辑表单按钮 -->
+    <ng-template #editBtnTpl>
+      <div nz-col nzFlex="24" class="text-center p-16">
+        <button nz-button type="submit" nzType="primary" class="m-r-8">
+          提交
+        </button>
+        <button
+          nz-button
+          [class]="showCollapse ? 'm-r-8' : ''"
+          (click)="reset()"
+        >
+          重置
+        </button>
       </div>
     </ng-template>
   `,

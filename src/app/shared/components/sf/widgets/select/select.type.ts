@@ -51,6 +51,6 @@ interface SelectProps extends WrapperProps, FormlyFieldSelectProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldSelect extends FieldType<
+export class FormlyNzSelect extends FieldType<
   FieldTypeConfig<SelectProps>
 > {}

@@ -5,10 +5,10 @@ import { FormlyModule } from '@ngx-formly/core'
 import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 
-import { FormlyFieldInput } from './input.type'
+import { FormlyNzInput } from './input.type'
 
 @NgModule({
-  declarations: [FormlyFieldInput],
+  declarations: [FormlyNzInput],
   imports: [
     ReactiveFormsModule,
     NzInputModule,
@@ -18,7 +18,7 @@ import { FormlyFieldInput } from './input.type'
       types: [
         {
           name: 'input',
-          component: FormlyFieldInput,
+          component: FormlyNzInput,
           wrappers: ['wrapper']
         },
         { name: 'string', extends: 'input' },
@@ -53,4 +53,4 @@ import { FormlyFieldInput } from './input.type'
     })
   ]
 })
-export class FormlyInputModule {}
+export class FormlyNzInputModule {}

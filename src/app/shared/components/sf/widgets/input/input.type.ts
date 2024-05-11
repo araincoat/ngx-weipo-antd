@@ -27,4 +27,4 @@ interface InputProps extends WrapperProps {}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldInput extends FieldType<FieldTypeConfig<InputProps>> {}
+export class FormlyNzInput extends FieldType<FieldTypeConfig<InputProps>> {}

@@ -18,14 +18,12 @@ interface DateProps extends WrapperProps {
   template: `
     @if(range){
     <nz-range-picker
-      style="width:100%"
       [formControl]="formControl"
       [formlyAttributes]="field"
       [nzMode]="mode"
     ></nz-range-picker>
     } @else {
     <nz-date-picker
-      style="width:100%"
       [formControl]="formControl"
       [formlyAttributes]="field"
       [nzMode]="mode"
@@ -38,13 +36,13 @@ interface DateProps extends WrapperProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldDate extends FieldType<FieldTypeConfig<DateProps>> {
+export class FormlyNzDatePicker extends FieldType<FieldTypeConfig<DateProps>> {
   get mode() {
     return this.props.mode ?? 'date'
   }
 
   get range() {
-    return this.props.range ?? true
+    return this.props.range ?? false
   }
 
   get showTime() {

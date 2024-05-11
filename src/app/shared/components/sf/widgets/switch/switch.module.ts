@@ -3,10 +3,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { FormlyModule } from '@ngx-formly/core'
 import { NzSwitchModule } from 'ng-zorro-antd/switch'
-import { FormlyFieldSwitch } from './switch.type'
+import { FormlyNzSwitch } from './switch.type'
 
 @NgModule({
-  declarations: [FormlyFieldSwitch],
+  declarations: [FormlyNzSwitch],
   imports: [
     ReactiveFormsModule,
     NzSwitchModule,
@@ -15,7 +15,7 @@ import { FormlyFieldSwitch } from './switch.type'
       types: [
         {
           name: 'switch',
-          component: FormlyFieldSwitch,
+          component: FormlyNzSwitch,
           wrappers: ['wrapper']
         },
         { name: 'boolean', extends: 'switch' }
@@ -23,4 +23,4 @@ import { FormlyFieldSwitch } from './switch.type'
     })
   ]
 })
-export class FormlySwitchModule {}
+export class FormlyNzSwitchModule {}

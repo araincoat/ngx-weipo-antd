@@ -27,7 +27,7 @@ interface CheckboxProps extends WrapperProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldCheckbox extends FieldType<
+export class FormlyNzCheckbox extends FieldType<
   FieldTypeConfig<CheckboxProps>
 > {
   override defaultOptions = {

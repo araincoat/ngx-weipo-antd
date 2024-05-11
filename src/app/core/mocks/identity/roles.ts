@@ -18,9 +18,8 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
+    },
 
-    ,
     {
       name: 'BookStore',
       isDefault: true,
@@ -29,8 +28,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -39,8 +37,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -49,8 +46,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -59,8 +55,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -69,8 +64,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -79,8 +73,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -89,8 +82,7 @@ const roles: any = {
       concurrencyStamp: 'e82d726d9f8244228265d0d05a002680',
       id: '9ae03e4c-53f2-2d53-b90d-3a11b48f383d',
       extraProperties: {}
-    }
-    ,
+    },
     {
       name: 'BookStore',
       isDefault: true,
@@ -104,5 +96,5 @@ const roles: any = {
 }
 
 export const ROLES = {
-  // '/api/identity/roles': () => roles
+  '/api/identity/roles': () => roles
 }

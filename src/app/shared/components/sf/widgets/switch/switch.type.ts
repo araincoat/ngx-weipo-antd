@@ -27,6 +27,6 @@ interface SwitchProps extends WrapperProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldSwitch extends FieldType<
+export class FormlyNzSwitch extends FieldType<
   FieldTypeConfig<SwitchProps>
 > {}

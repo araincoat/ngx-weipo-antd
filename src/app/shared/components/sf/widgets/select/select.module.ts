@@ -5,26 +5,27 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { FormlyModule } from '@ngx-formly/core'
 import { FormlySelectModule } from '@ngx-formly/core/select'
 
-import { NzRadioModule } from 'ng-zorro-antd/radio'
-import { FormlyFieldRadio } from './radio.type'
+import { NzSelectModule } from 'ng-zorro-antd/select'
+import { FormlyNzSelect } from './select.type'
 
 @NgModule({
-  declarations: [FormlyFieldRadio],
+  declarations: [FormlyNzSelect],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    NzRadioModule,
+    NzSelectModule,
 
     FormlySelectModule,
     FormlyModule.forChild({
       types: [
         {
-          name: 'radio',
-          component: FormlyFieldRadio,
+          name: 'select',
+          component: FormlyNzSelect,
           wrappers: ['wrapper']
-        }
+        },
+        { name: 'enum', extends: 'select' }
       ]
     })
   ]
 })
-export class FormlyRadioModule {}
+export class FormlyNzSelectModule {}

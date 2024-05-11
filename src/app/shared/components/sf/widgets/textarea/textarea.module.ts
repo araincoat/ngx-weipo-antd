@@ -4,10 +4,10 @@ import { FormlyModule } from '@ngx-formly/core'
 
 import { NzInputModule } from 'ng-zorro-antd/input'
 
-import { FormlyFieldTextArea } from './textarea.type'
+import { FormlyNzTextArea } from './textarea.type'
 
 @NgModule({
-  declarations: [FormlyFieldTextArea],
+  declarations: [FormlyNzTextArea],
   imports: [
     ReactiveFormsModule,
     NzInputModule,
@@ -16,11 +16,11 @@ import { FormlyFieldTextArea } from './textarea.type'
       types: [
         {
           name: 'textarea',
-          component: FormlyFieldTextArea,
+          component: FormlyNzTextArea,
           wrappers: ['wrapper']
         }
       ]
     })
   ]
 })
-export class FormlyTextAreaModule {}
+export class FormlyNzTextAreaModule {}

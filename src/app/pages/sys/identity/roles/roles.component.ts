@@ -1,97 +1,75 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject
-} from '@angular/core'
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { FormlyFieldConfig } from '@ngx-formly/core'
 
-import { NzCardModule } from 'ng-zorro-antd/card'
-import { NzTableModule, NzTableQueryParams } from 'ng-zorro-antd/table'
-import { NzTagModule } from 'ng-zorro-antd/tag'
-
-import { RoleModel, RoleService } from '@core/apis/identity/roles.service'
-import { QueryParams } from '@core/services/api.service'
-import { FormSchema } from '@shared/components/schema-form/interface'
-import { SchemaFormModule } from '@shared/components/schema-form/schema-form.module'
-import { NzButtonModule } from 'ng-zorro-antd/button'
-import { NzIconModule } from 'ng-zorro-antd/icon'
+import { SchemaTableColumn } from '@shared/components/schema-table/interface'
+import { SchemaTableModule } from '@shared/components/schema-table/schema-table.module'
+import { SFModule } from '@shared/components/sf/sf.module'
 
 @Component({
   selector: 'app-roles',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    NzTableModule,
-    NzTagModule,
-    NzCardModule,
-    NzButtonModule,
-    NzIconModule,
-    ReactiveFormsModule,
-    SchemaFormModule
-  ],
-  templateUrl: './roles.component.html',
-  styleUrl: './roles.component.less'
+  template: `
+    <div class="inner-content">
+      <sf [fields]="fields" (formSubmit)="search($event)"></sf>
+
+      <st title="角色管理" [columns]="columns">
+        <ng-template #nameTpl>123 </ng-template>
+      </st>
+    </div>
+  `,
+  imports: [SFModule, SchemaTableModule]
 })
 export class RolesComponent {
-  private cdr = inject(ChangeDetectorRef)
-  private fb = inject(NonNullableFormBuilder)
-  private roleService = inject(RoleService)
-
-  schema: FormSchema = {
+  fields: FormlyFieldConfig = {
     type: 'object',
-    widget: {
-      formlyConfig: {
-        props: {
-          mode: 'search'
-        }
-      }
+    props: {
+      mode: 'search'
     },
-    properties: {
-      name: {
+    fieldGroup: [
+      {
+        key: 'name',
         type: 'string',
-        title: '角色名称',
-        widget: {
-          formlyConfig: {
-            props: {
-              placeholder: ' 输入角色名称'
-            }
-          }
+        props: {
+          label: '角色名称'
         }
       }
+    ]
+  }
+
+  columns: SchemaTableColumn[] = [
+    {
+      title: '角色名称',
+      index: 'name',
+      render: 'nameTpl'
+    },
+    {
+      title: '操作'
     }
-  }
+  ]
 
-  isCollapse = true
-  loading = false
-  pageIndex = 1
-  pageSize = 10
-  sort = []
-  total: number = 0
-  items: RoleModel[] = []
+  // onQueryParamsChange(params: NzTableQueryParams): void {
+  //   this.loadDataFromServer(params)
+  // }
 
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    this.loadDataFromServer(params)
-  }
-
-  loadDataFromServer(params: QueryParams) {
-    // console.log('start')
-    this.loading = true
-    this.roleService.query(params).subscribe(data => {
-      // console.log('finished', data)
-      this.loading = false
-      this.total = data.totalCount // mock the total data here
-      this.items = data.items
-      this.cdr.markForCheck()
-    })
-  }
+  // loadDataFromServer(params: QueryParams) {
+  //   // console.log('start')
+  //   this.loading = true
+  //   this.roleService.query(params).subscribe(data => {
+  //     // console.log('finished', data)
+  //     this.loading = false
+  //     this.total = data.totalCount // mock the total data here
+  //     this.items = data.items
+  //     this.cdr.markForCheck()
+  //   })
+  // }
 
   constructor() {}
 
   search($event: any) {
-    $event.pageIndex = this.pageIndex
-    $event.pageSize = this.pageSize
-    console.log($event)
+    // $event.pageIndex = this.pageIndex
+    // $event.pageSize = this.pageSize
+    // console.log($event)
     // this.loadDataFromServer({} as QueryParams)
   }
 }

@@ -17,10 +17,8 @@ import { FormLayout } from './interface'
 
 @Component({
   selector: 'sf',
-  exportAs: 'sf2',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if(fields){
     <form
       nz-form
       [nzLayout]="layout"
@@ -33,14 +31,21 @@ import { FormLayout } from './interface'
         [model]="_model"
       ></formly-form>
     </form>
-    }
   `
 })
-export class SchemaFormComponent implements OnChanges {
+export class SFComponent implements OnChanges {
   _form = new FormGroup({})
   _options: FormlyFormOptions = {}
   _fields: FormlyFieldConfig[] = []
   _model: NzSafeAny
+
+  get valid() {
+    return this._form.valid
+  }
+
+  get value() {
+    return this._model
+  }
 
   @Input() layout: FormLayout = 'horizontal'
   @Input() model?: NzSafeAny = {}

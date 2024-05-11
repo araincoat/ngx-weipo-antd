@@ -26,4 +26,4 @@ interface RadioProps extends WrapperProps {}
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyFieldRadio extends FieldType<FieldTypeConfig<RadioProps>> {}
+export class FormlyNzRadio extends FieldType<FieldTypeConfig<RadioProps>> {}

@@ -3,10 +3,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { FormlyModule } from '@ngx-formly/core'
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
-import { FormlyFieldCheckbox } from './checkbox.type'
+import { FormlyNzCheckbox } from './checkbox.type'
 
 @NgModule({
-  declarations: [FormlyFieldCheckbox],
+  declarations: [FormlyNzCheckbox],
   imports: [
     ReactiveFormsModule,
     NzCheckboxModule,
@@ -15,7 +15,7 @@ import { FormlyFieldCheckbox } from './checkbox.type'
       types: [
         {
           name: 'checkbox',
-          component: FormlyFieldCheckbox,
+          component: FormlyNzCheckbox,
           wrappers: ['wrapper']
         },
         { name: 'boolean', extends: 'checkbox' }
@@ -23,4 +23,4 @@ import { FormlyFieldCheckbox } from './checkbox.type'
     })
   ]
 })
-export class FormlyCheckboxModule {}
+export class FormlyNzCheckboxModule {}

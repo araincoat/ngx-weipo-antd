@@ -1,34 +1,42 @@
+import { NgTemplateOutlet } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { FormlyModule } from '@ngx-formly/core'
 import { NzButtonModule } from 'ng-zorro-antd/button'
+import { NzCardModule } from 'ng-zorro-antd/card'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzIconModule } from 'ng-zorro-antd/icon'
+import { NzModalModule } from 'ng-zorro-antd/modal'
+
+import { SFComponent } from './sf.component'
 
 import { FormlyCardLayoutModule } from './layouts/card/card.module'
 import { FormlyCollapseLayoutModule } from './layouts/collapse/collapse.module'
 import { FormlyObjectLayoutModule } from './layouts/object/object.module'
-import { SchemaFormComponent } from './schema-form.component'
-import { FormlyCheckboxModule } from './widgets/checkbox/checkbox.module'
-import { FormlyDateModule } from './widgets/date/date.module'
+
+import { SFService } from './sf.service'
+import { FormlyNzCheckboxModule } from './widgets/checkbox/checkbox.module'
+import { FormlyNzDatePickerModule } from './widgets/date/date.module'
 import { FormlyWrapper } from './widgets/formly.wrapper'
-import { FormlyInputModule } from './widgets/input/input.module'
-import { FormlyRadioModule } from './widgets/radio/radio.module'
+import { FormlyNzInputModule } from './widgets/input/input.module'
+import { FormlyNzRadioModule } from './widgets/radio/radio.module'
 import { FormlyNzSelectModule } from './widgets/select/select.module'
-import { FormlySwitchModule } from './widgets/switch/switch.module'
-import { FormlyTextAreaModule } from './widgets/textarea/textarea.module'
+import { FormlyNzSwitchModule } from './widgets/switch/switch.module'
+import { FormlyNzTextAreaModule } from './widgets/textarea/textarea.module'
 
 @NgModule({
-  declarations: [SchemaFormComponent, FormlyWrapper],
+  declarations: [SFComponent, FormlyWrapper],
   imports: [
     ReactiveFormsModule,
+    NgTemplateOutlet,
+    NzModalModule,
     NzFormModule,
     NzButtonModule,
     NzIconModule,
+    NzCardModule,
 
     FormlyModule.forChild({
-      // types: [{ name: 'object', component: FormlyObject }],
       wrappers: [{ name: 'wrapper', component: FormlyWrapper }]
     }),
     // 导入布局组件
@@ -36,14 +44,15 @@ import { FormlyTextAreaModule } from './widgets/textarea/textarea.module'
     FormlyCollapseLayoutModule,
     FormlyCardLayoutModule,
     //导入组件
-    FormlyCheckboxModule,
-    FormlyInputModule,
-    FormlyRadioModule,
+    FormlyNzCheckboxModule,
+    FormlyNzInputModule,
+    FormlyNzRadioModule,
     FormlyNzSelectModule,
-    FormlySwitchModule,
-    FormlyTextAreaModule,
-    FormlyDateModule
+    FormlyNzSwitchModule,
+    FormlyNzTextAreaModule,
+    FormlyNzDatePickerModule
   ],
-  exports: [SchemaFormComponent]
+  providers: [SFService],
+  exports: [SFComponent]
 })
-export class SchemaFormModule {}
+export class SFModule {}

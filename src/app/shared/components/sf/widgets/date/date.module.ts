@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { FormlyModule } from '@ngx-formly/core'
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 
-import { FormlyFieldDate } from './date.type'
+import { FormlyNzDatePicker } from './date.type'
 
 @NgModule({
-  declarations: [FormlyFieldDate],
+  declarations: [FormlyNzDatePicker],
   imports: [
     ReactiveFormsModule,
     NzDatePickerModule,
@@ -16,11 +16,11 @@ import { FormlyFieldDate } from './date.type'
       types: [
         {
           name: 'date',
-          component: FormlyFieldDate,
+          component: FormlyNzDatePicker,
           wrappers: ['wrapper']
         }
       ]
     })
   ]
 })
-export class FormlyDateModule {}
+export class FormlyNzDatePickerModule {}

@@ -8,6 +8,7 @@ import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzIconModule } from 'ng-zorro-antd/icon'
 
 import { NgTemplateOutlet } from '@angular/common'
+import { NzCardModule } from 'ng-zorro-antd/card'
 import { FormlyObjectLayout } from './object.layout'
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FormlyObjectLayout } from './object.layout'
     NzFormModule,
     NzButtonModule,
     NzIconModule,
+    NzCardModule,
 
     FormlyModule.forChild({
       types: [{ name: 'object', component: FormlyObjectLayout }]
