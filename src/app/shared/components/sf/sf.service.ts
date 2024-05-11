@@ -11,37 +11,40 @@ export class SFService {
   constructor(private modalService: NzModalService) {}
 
   createModal(options: SFModalOptions) {
-    const { title, fields, onSubmit } = options
-
-    const _onSubmit = isPromise(onSubmit)
-      ? onSubmit
-      : () => new Promise(() => onSubmit?.apply(this))
-
-    const modal = this.modalService.create({
+    const { title, fields, model, onSubmit } = options
+    const modalRef = this.modalService.create({
       nzTitle: title,
       nzContent: SFComponent,
       nzFooter: [
         {
           label: '取消',
           onClick: () => {
-            modal.destroy()
+            modalRef.destroy()
           }
         },
         {
           label: '提交',
           type: 'primary',
           autoLoading: true,
-          disabled: contentComponentInstance => {
-            return !contentComponentInstance!.valid
-          },
-          onClick: _onSubmit
+          disabled: instance => !instance!.valid,
+          onClick: instance => {
+            if (onSubmit) {
+              if (isPromise(onSubmit)) {
+                return onSubmit?.call(instance, instance?.value)
+              } else
+                return new Promise(() =>
+                  onSubmit?.call(instance, instance?.value)
+                )
+            }
+          }
         }
       ]
     })
 
-    const cmpRef = modal.getContentComponentRef()!
+    const cmpRef = modalRef.getContentComponentRef()!
     cmpRef.setInput('fields', fields)
+    cmpRef.setInput('model', model)
 
-    return modal
+    return modalRef
   }
 }

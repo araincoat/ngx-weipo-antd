@@ -37,12 +37,11 @@ export class SFComponent implements OnChanges {
   _form = new FormGroup({})
   _options: FormlyFormOptions = {}
   _fields: FormlyFieldConfig[] = []
-  _model: NzSafeAny
+  _model: NzSafeAny = {}
 
   get valid() {
     return this._form.valid
   }
-
   get value() {
     return this._model
   }
@@ -61,17 +60,14 @@ export class SFComponent implements OnChanges {
     } else {
       this._fields = [this.fields]
     }
-
-    this._model = this.model
+    if (this.model) {
+      this._model = this.model
+    }
   }
 
   onSubmit() {
     if (this._form.valid) {
       this.formSubmit.emit(this.model)
     }
-  }
-
-  formValid() {
-    return this._form.valid
   }
 }

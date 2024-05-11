@@ -2,6 +2,11 @@ import { AppInfoModel } from '@core/apis/sys/app.service'
 
 const menus: any[] = [
   {
+    text: '调试页面',
+    icon: 'smile',
+    routePath: '/test'
+  },
+  {
     text: '外部链接',
     icon: 'link',
     children: [
