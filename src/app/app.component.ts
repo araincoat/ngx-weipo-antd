@@ -1,20 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject
-} from '@angular/core'
-import {
-  NavigationEnd,
-  NavigationError,
-  RouteConfigLoadStart,
-  Router,
-  RouterOutlet
-} from '@angular/router'
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core'
+import { NavigationEnd, NavigationError, RouteConfigLoadStart, Router, RouterOutlet } from '@angular/router'
+import { PreloaderService } from '@core/services/preloader.service'
 
 import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal'
 
-import { PreloaderService } from '@core/services/preloader.service'
 import { environment } from 'src/environments/environment'
 
 @Component({
@@ -49,6 +38,7 @@ export class AppComponent implements OnInit {
       }
       if (event instanceof NavigationEnd) {
         this.preloaderService.donePreloader()
+        // donePreloader()
       }
     })
   }

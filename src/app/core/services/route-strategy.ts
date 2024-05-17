@@ -1,8 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  DetachedRouteHandle,
-  RouteReuseStrategy
-} from '@angular/router'
+import { ActivatedRouteSnapshot, DetachedRouteHandle, RouteReuseStrategy } from '@angular/router'
 import { NzSafeAny } from 'ng-zorro-antd/core/types'
 
 /** 基础的路由复用策略 */
@@ -12,6 +8,10 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
   // 这个参数的目的是，在当前页签中点击删除按钮，虽然页签关闭了，但是在路由离开的时候，还是会将已经关闭的页签的组件缓存，
   // 用这个参数来记录，是否需要缓存当前路由
   public static deleteKey: string | null
+
+  // private getRouteUrl(route: ActivatedRouteSnapshot) {
+  //   return (route as any)['_routerState'].url.replace(/\//g, '_')
+  // }
 
   public static deleteRouteSnapshot(key: string) {
     SimpleReuseStrategy.deleteKey = key
@@ -40,6 +40,13 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @param {type}
    */
   store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle): void {
+    //console.log(this.getRouteUrl(route))
+    // if (SimpleReuseStrategy.deleteKey && SimpleReuseStrategy.deleteKey == this.getRouteUrl(route)) {
+    //   //如果待删除是当前路由则不存储快照
+    //   SimpleReuseStrategy.deleteKey = null
+    //   return
+    // }
+
     const key = route.data['key']
     if (SimpleReuseStrategy.deleteKey === key) {
       SimpleReuseStrategy.deleteKey = null
@@ -80,10 +87,16 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
    * @param {type}
    * @return:boolean true-复用 false-不复用
    */
-  shouldReuseRoute(
-    future: ActivatedRouteSnapshot,
-    curr: ActivatedRouteSnapshot
-  ): boolean {
+  shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+    // console.log(future.data)
+
+    // 懒加载读取不到data，通过此方法下钻到最下一级路由
+    // while (future.firstChild) {
+    //   future = future.firstChild;
+    // }
+
+    // console.log(future.data)
+
     return future.routeConfig === curr.routeConfig
   }
 }

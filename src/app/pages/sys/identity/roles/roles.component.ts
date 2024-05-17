@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core'
+import { Router } from '@angular/router'
+import { AppService } from '@core/apis/sys/app.service'
 import { FormlyFieldConfig } from '@ngx-formly/core'
 
 import { SchemaTableColumn } from '@shared/components/schema-table/interface'
@@ -12,15 +15,14 @@ import { SFModule } from '@shared/components/sf/sf.module'
   template: `
     <div class="inner-content">
       <sf [fields]="fields" (formSubmit)="search($event)"></sf>
-
-      <st title="角色管理" [columns]="columns">
-        <ng-template #nameTpl>123 </ng-template>
-      </st>
+      <p>
+        {{ data | json }}
+      </p>
     </div>
   `,
-  imports: [SFModule, SchemaTableModule]
+  imports: [SFModule, SchemaTableModule, CommonModule]
 })
-export class RolesComponent {
+export class RolesComponent implements OnInit {
   fields: FormlyFieldConfig = {
     type: 'object',
     props: {
@@ -31,7 +33,8 @@ export class RolesComponent {
         key: 'name',
         type: 'string',
         props: {
-          label: '角色名称'
+          label: '角色名称',
+          required: true
         }
       }
     ]
@@ -66,6 +69,25 @@ export class RolesComponent {
 
   constructor() {}
 
+  router = inject(Router)
+  cdr = inject(ChangeDetectorRef)
+  appService = inject(AppService)
+  data: any = {}
+  ngOnInit(): void {
+    // this.appService.getAppInfo().subscribe(data => {
+    //   this.data = data
+    //   this.cdr.markForCheck()
+    //   console.log(data)
+    // })
+  }
+
+  route1() {
+    this.router.navigateByUrl('/identity/roles/1')
+  }
+
+  route2() {
+    this.router.navigateByUrl('/identity/roles/2')
+  }
   search($event: any) {
     // $event.pageIndex = this.pageIndex
     // $event.pageSize = this.pageSize

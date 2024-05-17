@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges
-} from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core'
 import { FormGroup } from '@angular/forms'
 
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core'
@@ -19,17 +11,8 @@ import { FormLayout } from './interface'
   selector: 'sf',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <form
-      nz-form
-      [nzLayout]="layout"
-      [formGroup]="_form"
-      (ngSubmit)="onSubmit()"
-    >
-      <formly-form
-        [form]="_form"
-        [fields]="_fields"
-        [model]="_model"
-      ></formly-form>
+    <form nz-form [nzLayout]="layout" [formGroup]="_form" (ngSubmit)="onSubmit()">
+      <formly-form [form]="_form" [fields]="_fields" [model]="_model"></formly-form>
     </form>
   `
 })
@@ -51,10 +34,11 @@ export class SFComponent implements OnChanges {
   @Input() schema?: any
   @Input() fields: FormlyFieldConfig = {}
 
-  @Output() formSubmit = new EventEmitter<any>()
+  noopFun = () => void 0
+  @Output() readonly formSubmit = new EventEmitter<any>()
 
   constructor(private formlyJsonschema: FormlyJsonschema) {}
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.schema) {
       this._fields = [this.formlyJsonschema.toFieldConfig(this.schema)]
     } else {

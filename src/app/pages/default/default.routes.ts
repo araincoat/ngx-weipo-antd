@@ -24,6 +24,18 @@ export const DEFAULT_ROUTES: Routes = [
   {
     path: 'test',
     component: TestComponent,
-    data: { key: 'app.test', text: '测试' }
-  },
+    data: { key: 'app.test', text: '测试' },
+    children: [
+      {
+        path: 'test1',
+        component: TestComponent,
+        data: { key: 'app.test1', text: '测试1' }
+      },
+      {
+        path: 'test2',
+        component: TestComponent,
+        data: { key: 'app.test2', text: '测试2' }
+      }
+    ]
+  }
 ]

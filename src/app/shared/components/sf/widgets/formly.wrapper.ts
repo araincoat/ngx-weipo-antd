@@ -1,10 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
-import {
-  FieldWrapper,
-  FormlyFieldConfig,
-  FormlyFieldProps
-} from '@ngx-formly/core'
+import { FieldWrapper, FormlyFieldConfig, FormlyFieldProps } from '@ngx-formly/core'
 
 export interface WrapperProps extends FormlyFieldProps {
   hideRequiredMarker?: boolean
@@ -44,9 +40,7 @@ export interface WrapperProps extends FormlyFieldProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyWrapper extends FieldWrapper<
-  FormlyFieldConfig<WrapperProps>
-> {
+export class FormlyWrapper extends FieldWrapper<FormlyFieldConfig<WrapperProps>> {
   get errorState() {
     return this.showError ? 'error' : ''
   }

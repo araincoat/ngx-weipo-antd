@@ -22,9 +22,7 @@ interface TextAreaProps extends WrapperProps {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormlyNzTextArea extends FieldType<
-  FieldTypeConfig<TextAreaProps>
-> {
+export class FormlyNzTextArea extends FieldType<FieldTypeConfig<TextAreaProps>> {
   override defaultOptions = {
     props: {
       autosize: false

@@ -4,7 +4,17 @@ const menus: any[] = [
   {
     text: '调试页面',
     icon: 'smile',
-    routePath: '/test'
+    routePath: '/test',
+    children: [
+      {
+        text: '调试1',
+        routePath: '/test/test1'
+      },
+      {
+        text: '调试2',
+        routePath: '/test/test2'
+      }
+    ]
   },
   {
     text: '外部链接',

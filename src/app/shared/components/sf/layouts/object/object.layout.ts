@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  inject
+} from '@angular/core'
 
 import { FieldType, FieldTypeConfig, FormlyFieldProps } from '@ngx-formly/core'
+import { OnClickCallback } from '../../interface'
 
 export interface FormLayoutProps extends FormlyFieldProps {
   /**
@@ -9,6 +16,8 @@ export interface FormLayoutProps extends FormlyFieldProps {
   columns?: number
   collapseRows?: number
   mode?: 'default' | 'search' | 'edit'
+  loading: boolean
+  formSubmit: OnClickCallback
 }
 
 /** @ignore */
@@ -47,7 +56,14 @@ export interface FormLayoutProps extends FormlyFieldProps {
     <!-- 查询表单按钮 -->
     <ng-template #searchBtnTpl>
       <div nz-col nzFlex="auto" class="text-right m-b-24 p-l-16 p-r-16">
-        <button nz-button type="submit" nzType="primary" class="m-r-8">
+        <button
+          nz-button
+          class="m-r-8"
+          nzType="primary"
+          [disabled]="!form.valid"
+          [nzLoading]="props.loading"
+          (click)="onButtonClick(props.formSubmit)"
+        >
           <i nz-icon nzType="search"></i> 搜索
         </button>
         <button
@@ -68,7 +84,15 @@ export interface FormLayoutProps extends FormlyFieldProps {
     <!-- 编辑表单按钮 -->
     <ng-template #editBtnTpl>
       <div nz-col nzFlex="24" class="text-center p-16">
-        <button nz-button type="submit" nzType="primary" class="m-r-8">
+        <button
+          nz-button
+          class="m-r-8"
+          type="submit"
+          nzType="primary"
+          [disabled]="!form.valid"
+          [nzLoading]="props.loading"
+          (click)="onButtonClick(props.formSubmit)"
+        >
           提交
         </button>
         <button
@@ -87,6 +111,7 @@ export class FormlyObjectLayout
   extends FieldType<FieldTypeConfig<FormLayoutProps>>
   implements OnInit
 {
+  cdr = inject(ChangeDetectorRef)
   isCollapse = true
   span = 24
 
@@ -122,5 +147,17 @@ export class FormlyObjectLayout
   reset() {
     this.formControl.reset()
     // this.options.resetModel!()
+  }
+
+  async onButtonClick(callback?: OnClickCallback): Promise<void> {
+    this.props.loading = true
+    try {
+      await callback?.call(this, this.model)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      this.props.loading = false
+      this.cdr.markForCheck()
+    }
   }
 }
